@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FDAOpenAPI.WebUI", "FDAOpenAPI.WebUI\FDAOpenAPI.WebUI.csproj", "{CB9CC761-A361-436C-867E-BCCF69C0F279}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FDAOpenAPI.WebUI", "FDAOpenAPI.WebUI\FDAOpenAPI.WebUI.csproj", "{CB9CC761-A361-436C-867E-BCCF69C0F279}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Folder", "Solution Folder", "{E9ED9269-4A19-4320-9866-A14B2E5D068E}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
