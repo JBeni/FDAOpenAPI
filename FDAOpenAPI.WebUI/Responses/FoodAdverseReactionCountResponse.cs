@@ -1,8 +1,6 @@
-﻿using FDAOpenAPI.WebUI.Models;
-
-namespace FDAOpenAPI.WebUI.Responses
+﻿namespace FDAOpenAPI.WebUI.Responses
 {
-    public class FoodCountResponse
+    public class FoodAdverseReactionCountResponse
     {
         public Metadata Meta { get; set; }
         public List<CountModel> Results { get; set; }
