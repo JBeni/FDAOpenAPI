@@ -19,7 +19,7 @@
         {
             var response = await _httpClient.GetAsync($"?limit={limitNumber}");
             var responseResult = await response.Content.ReadAsStringAsync();
-            var result = JsonSerializer.Deserialize<DrugResponse>(
+            var result = JsonSerializer.Deserialize<DrugRecallEnforcementResponse>(
                 responseResult,
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true }
             );
