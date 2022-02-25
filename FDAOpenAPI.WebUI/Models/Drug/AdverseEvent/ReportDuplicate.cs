@@ -1,4 +1,4 @@
-﻿namespace FDAOpenAPI.WebUI.Models.Drug
+﻿namespace FDAOpenAPI.WebUI.Models.Drug.AdverseEvent
 {
     public class ReportDuplicate
     {
