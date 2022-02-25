@@ -5,8 +5,6 @@
         private readonly IConfiguration _configuration;
         private readonly HttpClient _httpClient;
 
-        //https://api.fda.gov/food/enforcement.json?search=distribution_pattern:"nationwide"&limit=5
-
         public FoodAdverseEventsController(IConfiguration configuration)
         {
             _configuration = configuration;
@@ -17,11 +15,11 @@
         }
 
         [HttpGet("adverse-reactions")]
-        public async Task<IActionResult> GetData([FromQuery] int limitNumber)
+        public async Task<IActionResult> GetData([FromQuery] int resultNumber)
         {
-            var response = await _httpClient.GetAsync($"event.json?limit={limitNumber}");
+            var response = await _httpClient.GetAsync($"event.json?limit={resultNumber}");
             var responseResult = await response.Content.ReadAsStringAsync();
-            var result = JsonSerializer.Deserialize<FoodRecallEnforcementResponse>(
+            var result = JsonSerializer.Deserialize<FoodAdverseReactionResponse>(
                 responseResult,
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true }
             );
@@ -45,7 +43,7 @@
 
             var response = await _httpClient.GetAsync($"event.json?search={query}&count=reactions.exact");
             var responseResult = await response.Content.ReadAsStringAsync();
-            var result = JsonSerializer.Deserialize<FoodRecallEnforcementCountResponse>(
+            var result = JsonSerializer.Deserialize<FoodAdverseReactionCountResponse>(
                 responseResult,
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true }
             );
@@ -54,7 +52,7 @@
         }
 
         [HttpGet("adverse-reactions-search-by-field")]
-        public async Task<IActionResult> GetSearchField([FromQuery] string search_field, string value, int limitNumber)
+        public async Task<IActionResult> GetSearchField([FromQuery] string search_field, string value, int resultNumber)
         {
             _ = long.TryParse(value, out long parseResult);
             string? query;
@@ -67,9 +65,9 @@
                 query = $"{search_field.ToLower()}:{parseResult}";
             }
 
-            var response = await _httpClient.GetAsync($"event.json?search={query}&limit={limitNumber}");
+            var response = await _httpClient.GetAsync($"event.json?search={query}&limit={resultNumber}");
             var responseResult = await response.Content.ReadAsStringAsync();
-            var result = JsonSerializer.Deserialize<FoodRecallEnforcementResponse>(
+            var result = JsonSerializer.Deserialize<FoodAdverseReactionResponse>(
                 responseResult,
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true }
             );
@@ -82,7 +80,7 @@
         {
             var response = await _httpClient.GetAsync($"?search=date_started:[{startDate.Replace("/", "")}+TO+{endDate.Replace("/", "")}]");
             var responseResult = await response.Content.ReadAsStringAsync();
-            var result = JsonSerializer.Deserialize<FoodRecallEnforcementResponse>(
+            var result = JsonSerializer.Deserialize<FoodAdverseReactionResponse>(
                 responseResult,
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true }
             );

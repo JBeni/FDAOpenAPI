@@ -15,9 +15,9 @@
         }
 
         [HttpGet("tobaccos")]
-        public async Task<IActionResult> GetData([FromQuery] int limitNumber)
+        public async Task<IActionResult> GetData([FromQuery] int resultNumber)
         {
-            var response = await _httpClient.GetAsync($"?limit={limitNumber}");
+            var response = await _httpClient.GetAsync($"?limit={resultNumber}");
             var responseResult = await response.Content.ReadAsStringAsync();
             var result = JsonSerializer.Deserialize<TobaccoResponse>(
                 responseResult,
